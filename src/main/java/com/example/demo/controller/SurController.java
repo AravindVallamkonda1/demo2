@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.ResponseDTO;
 import com.example.demo.entity.SurveyDetails;
 import com.example.demo.service.SurveyService;
 
@@ -26,30 +27,30 @@ public class SurController {
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@PostMapping("create")
-		public ResponseEntity<SurveyDetails> createSurvey(@RequestBody SurveyDetails sur) {
-		return new ResponseEntity(surser.createSurvey(sur),HttpStatus.CREATED);
+		public ResponseEntity<ResponseDTO> createSurvey(@RequestBody SurveyDetails sur) {	
+		return new ResponseEntity<ResponseDTO>(surser.createSurvey(sur),HttpStatus.OK);
 	}
 	
 	@GetMapping("getall")
-	public List<SurveyDetails> getAllSurveys(){
-		return surser.getAllSurveys();
+	public ResponseEntity<ResponseDTO> getAllSurveys(){
+		return new ResponseEntity<ResponseDTO>(surser.getAllSurveys(),HttpStatus.OK);
 	}
 	
 	@GetMapping("get/{id}")
-	public 	ResponseEntity<SurveyDetails> getSurveyById(@PathVariable("id") long id){
-		return new ResponseEntity<SurveyDetails>(surser.getSurveyById(id),HttpStatus.OK);
+	public 	ResponseEntity<ResponseDTO> getSurveyById(@PathVariable("id") long id){
+		return new ResponseEntity<ResponseDTO>(surser.getSurveyById(id),HttpStatus.OK);
 		
 	}
 	
 	@DeleteMapping("delete/{id}")
-	public 	ResponseEntity<String> deleteSurveyById(@PathVariable("id") long id){
-		return new ResponseEntity<String>(surser.deleteSurvey(id),HttpStatus.OK);
+	public 	ResponseEntity<ResponseDTO> deleteSurveyById(@PathVariable("id") long id){
+		return new ResponseEntity<ResponseDTO>(surser.deleteSurvey(id),HttpStatus.OK);
 		
 	}
 	
 	@PutMapping("update/{id}") 
-	public 	ResponseEntity<SurveyDetails> updateSurveyById(@PathVariable("id") long id,@RequestBody SurveyDetails sur){
-			return new ResponseEntity<SurveyDetails>(surser.updateSurvey(sur,id),HttpStatus.OK);
+	public 	ResponseEntity<ResponseDTO> updateSurveyById(@PathVariable("id") long id,@RequestBody SurveyDetails sur){
+			return new ResponseEntity<ResponseDTO>(surser.updateSurvey(sur,id),HttpStatus.OK);
 		
 	}
 	
