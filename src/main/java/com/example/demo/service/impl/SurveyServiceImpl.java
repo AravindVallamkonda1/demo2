@@ -34,7 +34,7 @@ public class SurveyServiceImpl implements SurveyService{
 	@Override
 	public ResponseDTO getAllSurveys() {
 		ArrayList<SurveyDetails> surdet = (ArrayList<SurveyDetails>) surRepo.findAll();
-		return new ResponseDTO("200","OKT","",surdet);
+		return new ResponseDTO("200","OK","",surdet);
 	}
 
 	@Override
